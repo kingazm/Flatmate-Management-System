@@ -33,3 +33,57 @@ public class DatabaseInfo {
     public final static String databaseDriver = "com.mysql.cj.jdbc.Driver";
 }
 ```
+
+Code for setting up the database
+```
+CREATE DATABASE flatmatesdb;
+USE flatmatesdb;
+
+CREATE table personalShoppingList (
+    Item VARCHAR(40) NOT NULL,
+    Amount INT,
+    User VARCHAR(20),
+    Status ENUM('to buy', 'bought'),
+    PRIMARY KEY(Item)
+);
+
+CREATE table flatShoppingList (
+    Item VARCHAR(40) NOT NULL,
+    Amount INT,
+    Status ENUM('to buy', 'bought'),
+    PRIMARY KEY(Item)
+);
+
+CREATE table tasks (
+    Id INT NOT NULL AUTO_INCREMENT,
+    Description VARCHAR(50),
+    Category VARCHAR(20),
+    AssignedUser VARCHAR(20),
+    Deadline DATETIME,
+    Priority ENUM('HIGH', 'MEDIUM', 'LOW'),
+    Status ENUM('TO DO', 'DONE', 'IN PROGRESS'),
+    PRIMARY KEY(Id)
+);
+
+CREATE TABLE users(
+    Id int NOT NULL auto_increment,
+    Username VARCHAR(20),
+    Email VARCHAR(320),
+    Password VARCHAR(20),
+    Role ENUM('ADMIN', 'USER'),
+    PRIMARY KEY(Id)
+);
+    
+CREATE TABLE info(
+    Street VARCHAR(100),
+    Number INT,
+    FlatNumber INT,
+    Floor INT,
+    PostCode VARCHAR(6),
+    City VARCHAR(20),
+    DoorCode VARCHAR(20),
+    WiFiName VARCHAR(20),
+    WiFiPassword VARCHAR(50)
+);
+    
+```
