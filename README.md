@@ -3,9 +3,9 @@ A managent platorm that improves experience of sharing a flat. Core functionalit
 
 # Demo
 Soon!
-Credentials to login and test:
-Login: TestRoommate
-Password: Test
+<br>Credentials to login and test:<br>
+<b>Login:</b> TestRoommate<br>
+<b>Password:</b> Test
 
 # Tech stack
 Java (Springboot, Spring Security, JDBC), MySQL database, HTML with Thymeleaf templates, CSS & Bootstrap.
