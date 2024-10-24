@@ -1,8 +1,8 @@
 # Flatmate Management System
 A managent platorm that improves experience of sharing a flat. Core functionalities include user and role-based access to CRUD operations on tasks and shopping lists, Spring Security login and easy access to key data about the place you live in. The project is still actively developed, so more functionalities are in progress. 
 
-# Demo
-Soon!
+# Demo on AWS EC2
+<b>http://ec2-13-51-60-227.eu-north-1.compute.amazonaws.com:8080/</b>
 <br>Credentials to login and test:<br>
 <b>Login:</b> TestRoommate<br>
 <b>Password:</b> Test
