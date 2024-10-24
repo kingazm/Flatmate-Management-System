@@ -3,6 +3,9 @@ A managent platorm that improves experience of sharing a flat. Core functionalit
 
 # Demo
 Soon!
+Credentials to login and test:
+Login: TestRoommate
+Password: Test
 
 # Tech stack
 Java (Springboot, Spring Security, JDBC), MySQL database, HTML with Thymeleaf templates, CSS & Bootstrap.
@@ -85,5 +88,7 @@ CREATE TABLE info(
     WiFiName VARCHAR(20),
     WiFiPassword VARCHAR(50)
 );
+
+INSERT into info(Street, Number, FlatNumber, Floor, PostCode, City, DoorCode, WiFiName, WiFiPassword) VALUES (<yourstreet>, <yourbuildingnumber>, <yourflatnumber>, <yourfloor>, <yourpostcode>, <yourcity>, <yourdoorcode>, <yourwifiname>, <yourwifipassword>);
     
 ```
