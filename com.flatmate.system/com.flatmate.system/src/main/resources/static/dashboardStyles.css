@@ -1,0 +1,26 @@
+section {
+    width: 31%;
+    margin: 10px;
+    position: relative;
+    float: left;
+    border-radius: 20px;
+    background: #FFFFFF;
+    padding: 20px;
+}
+
+#main-content {
+    padding: 20px;
+    background: #F6F6F6;
+}
+
+
+section form {
+    text-align: right;
+}
+
+@media (max-width: 991px) {
+    section {
+        width: 96%;
+        margin: 5px;
+    }
+}

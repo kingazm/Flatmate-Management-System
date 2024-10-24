@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title th:text = "${tasksTitle}"></title>
+
+    <link th:href="@{../navstyles.css}" rel="stylesheet"/>
+    <link th:href="@{../globalStyles.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- the logout icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- logout icon-->
+    <!-- A page showing a list of current tasks of each user, as well as options to modify, delete and add more tasks -->
+
+
+</head>
+<body style = "background: #F6F6F6;">
+
+<nav class="navbar" id="top">
+    <div class="container-fluid navbar">
+        <span class="navbar-brand">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+        </svg>
+            Flatmate Management System</span>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="14" viewBox="0 0 30 30">
+                <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
+            </svg>
+        </button>
+
+        <div id="collapsable-nav" class="collapse navbar-collapse">
+            <ul id="nav-list" class="nav navbar-nav navbar-right">
+                <li>
+                    <form th:action="@{/dashboard}" method="get"><input type = "submit" value = "Dashboard"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/tasks}" method="get"><input type = "submit" value = "Your tasks"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/globalTasks}" method="get"><input type = "submit" value = "All tasks"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/shoppingList}" method="get"><input type = "submit" value = "Shopping list"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/info}" method="get"><input type = "submit" value = "Info"></form>
+                </li>
+                <
+                <li>
+                    <form  th:action="@{/logout}" method="post"><input type = "submit" value = "Logout"></form>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class = "box" style = "background: white; margin: 20px; border-radius: 20px; padding: 20px;">
+    <table>
+
+        <tbody>
+
+        <tr th:each="task : ${tasks}">
+
+            <td><span th:text="${task.description}"></span></td>
+            <td><span th:text="${task.deadline}"></span></td>
+
+            <td>
+                <div class = "row">
+                    <form th:action="@{'/taskDeletion/' +  ${task.id}}" method="post" style="margin-right: 3px; margin-bottom: 3px;">
+
+                        <div><input type="submit" value="Done" th:action="@{/taskDeletion}"/></div>
+                        <!-- Figure out whether it should be deleting or changing progress, maybe send an email notifiction or some in between screen-->
+
+                    </form>
+
+                    <form th:action="@{'/taskDeletion/' +  ${task.id}}" method="post">
+
+                        <div><input type="submit" value="Delete" th:action="@{/taskDeletion}"/></div>
+
+                    </form>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+    <span th:if=" ${tasks.isEmpty()}">No tasks left to do :)</span>
+
+    <div class = "box">
+        <form th:action="@{/taskAddition}" method="get" style = "margin-top: 10px;">
+
+            <div><input type="submit" value="Add new task" th:action="@{/taskAddition}"/></div>
+
+        </form>
+
+        <form th:action="@{/dashboard}" method="get" style = "margin-top: 10px;">
+
+            <div><input type="submit" value="back to dashboard" th:action="@{/dashboard}"/></div>
+
+        </form>
+    </div>
+
+
+</div>
+
+</body>
+</html>

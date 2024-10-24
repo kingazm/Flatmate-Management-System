@@ -1,0 +1,15 @@
+nav {
+    background: #FFBD59;
+    color: #FFFFFF;
+}
+
+nav input, nav input:hover, nav button, nav button:active{
+    background: transparent;
+    border: 0px;
+    border-color: transparent;
+    color: white;
+}
+
+button:focus, input:focus {
+    outline: none;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title th:text="${dashboardTitle}"></title>
+
+    <link th:href="@{../navstyles.css}" rel="stylesheet"/>
+    <link th:href="@{../globalStyles.css}" rel="stylesheet"/>
+    <link th:href="@{../dashboardStyles.css}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- the logout icon-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
+
+</head>
+
+<body>
+<nav class="navbar" id="top">
+    <div class="container-fluid navbar">
+        <span class="navbar-brand">
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="19" fill="currentColor" class="bi bi-house" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+        </svg>
+            Flatmate Management System
+        </span>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="30" height="14" viewBox="0 0 30 30">
+                <path d="M 3 7 A 1.0001 1.0001 0 1 0 3 9 L 27 9 A 1.0001 1.0001 0 1 0 27 7 L 3 7 z M 3 14 A 1.0001 1.0001 0 1 0 3 16 L 27 16 A 1.0001 1.0001 0 1 0 27 14 L 3 14 z M 3 21 A 1.0001 1.0001 0 1 0 3 23 L 27 23 A 1.0001 1.0001 0 1 0 27 21 L 3 21 z"></path>
+            </svg>
+        </button>
+
+
+        <div id="collapsable-nav" class="collapse navbar-collapse">
+            <ul id="nav-list" class="nav navbar-nav navbar-right">
+                <li>
+                    <form th:action="@{/dashboard}" method="get"><input type = "submit" value = "Dashboard"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/tasks}" method="get"><input type = "submit" value = "Your tasks"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/globalTasks}" method="get"><input type = "submit" value = "All tasks"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/shoppingList}" method="get"><input type = "submit" value = "Shopping list"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/info}" method="get"><input type = "submit" value = "Info"></form>
+                </li>
+                <li>
+                    <form  th:action="@{/logout}" method="post"><input type = "submit" value = "Logout"></form>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="main-content">
+
+    <div class="row">
+        <section id="Tasks">
+            <center>
+                <h1><svg xmlns="http://www.w3.org/2000/svg" width="50" height="70"  viewBox="0 0 512 512" fill="black"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32l224 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-224 0c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32l288 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-288 0c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg></h1>
+                <h1>Your tasks</h1>
+            </center>
+
+            <form th:action="@{/tasks}" method="get">
+                <div><input type="submit" value="more..." th:action="@{/tasks}"/></div>
+            </form>
+        </section>
+
+        <section id="Shopping list">
+            <center>
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" width="50" height="70" fill="black"><!--!Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M0 24C0 10.7 10.7 0 24 0L69.5 0c22 0 41.5 12.8 50.6 32l411 0c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3l-288.5 0 5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5L488 336c13.3 0 24 10.7 24 24s-10.7 24-24 24l-288.3 0c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5L24 48C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>                        </h1>
+                <h1>Shopping list</h1>
+            </center>
+
+            <form th:action="@{/shoppingList}" method="get">
+                <div><input type="submit" value="more..." th:action="@{/shoppingList}"/></div>
+            </form>
+        </section>
+
+        <section id="Flat info">
+            <center>
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="70" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                        <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                    </svg>
+                    <h1>Flat info</h1>
+            </center>
+
+            <form th:action="@{/info}" method="get">
+                <div><input type="submit" value="more..." th:action="@{/info}"/></div>
+            </form>
+        </section>
+
+        <section id="Global tasks">
+            <center>
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="70" viewBox="0 0 48 48">
+                        <path d="M25.5 22.5H42v-11C42 8.468 39.532 6 36.5 6h-11V22.5zM22.5 22.5V6h-11C8.468 6 6 8.468 6 11.5v11H22.5zM25.5 25.5V42h11c3.032 0 5.5-2.468 5.5-5.5v-11H25.5zM22.5 25.5H6v11c0 3.032 2.468 5.5 5.5 5.5h11V25.5z"></path>
+                    </svg>
+                    <h1>All tasks</h1>
+            </center>
+
+            <form th:action="@{/globalTasks}" method="get">
+                <div><input type="submit" value="more..." th:action="@{/globalTasks}"/></div>
+            </form>
+        </section>
+
+        <section id="Placeholder2">
+            <center>
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="70" viewBox="0 0 24 24">
+                        <path d="M 12 1 C 8.6761905 1 6 3.6761905 6 7 L 6 8 C 4.9 8 4 8.9 4 10 L 4 20 C 4 21.1 4.9 22 6 22 L 18 22 C 19.1 22 20 21.1 20 20 L 20 10 C 20 8.9 19.1 8 18 8 L 18 7 C 18 3.6761905 15.32381 1 12 1 z M 12 3 C 14.27619 3 16 4.7238095 16 7 L 16 8 L 8 8 L 8 7 C 8 4.7238095 9.7238095 3 12 3 z M 12 13 C 13.1 13 14 13.9 14 15 C 14 16.1 13.1 17 12 17 C 10.9 17 10 16.1 10 15 C 10 13.9 10.9 13 12 13 z"></path>
+                    </svg>
+                    <h1>Not available</h1>
+            </center>
+
+            <form th:action="@{/dashboard}" method="get">
+                <div><input type="submit" value="more..." th:action="@{/dashboard}"/></div>
+            </form>
+        </section>
+
+        <section id="Placeholder3">
+            <center>
+                <h1>
+                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="70" viewBox="0 0 24 24">
+                        <path d="M 12 1 C 8.6761905 1 6 3.6761905 6 7 L 6 8 C 4.9 8 4 8.9 4 10 L 4 20 C 4 21.1 4.9 22 6 22 L 18 22 C 19.1 22 20 21.1 20 20 L 20 10 C 20 8.9 19.1 8 18 8 L 18 7 C 18 3.6761905 15.32381 1 12 1 z M 12 3 C 14.27619 3 16 4.7238095 16 7 L 16 8 L 8 8 L 8 7 C 8 4.7238095 9.7238095 3 12 3 z M 12 13 C 13.1 13 14 13.9 14 15 C 14 16.1 13.1 17 12 17 C 10.9 17 10 16.1 10 15 C 10 13.9 10.9 13 12 13 z"></path>
+                    </svg>
+                    <h1>Not available</h1>
+            </center>
+
+            <form th:action="@{/dashboard}" method="get">
+                <div><input type="submit" value="more..." th:action="@{/dashboard}"/></div>
+            </form>
+        </section>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+</body>
+
+</html>
